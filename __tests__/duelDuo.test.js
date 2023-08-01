@@ -16,3 +16,19 @@ describe("Duel Duo tests", () => {
     await driver.wait(until.titleIs("Duel Duo"), 1000);
   });
 });
+
+test("clicking the Draw button displays the div with id = 'choices'", async () => {
+  await driver.get("http://localhost:8000");
+  const drawButton = await driver.findElement(By.id("draw-button"));
+  await drawButton.click();
+  const choicesDiv = await driver.findElement(By.id("choices"));
+  expect(await choicesDiv.isDisplayed()).toBe(true);
+});
+
+test("clicking an 'Add to Duo' button displays the div with id = 'player-duo'", async () => {
+  await driver.get("http://localhost:8000");
+  const addToDuoButton = await driver.findElement(By.className("add-to-duo"));
+  await addToDuoButton.click();
+  const playerDuoDiv = await driver.findElement(By.id("player-duo"));
+  expect(await playerDuoDiv.isDisplayed()).toBe(true);
+});
